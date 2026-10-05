@@ -1,0 +1,3 @@
+import type { MetadataRoute } from "next";
+import { cities, services, siteUrl, type CityKey } from "@/lib/site";
+export default function sitemap():MetadataRoute.Sitemap{const now=new Date();return [{url:siteUrl,lastModified:now,changeFrequency:"monthly",priority:1},...(["la-rioja","san-juan"] as CityKey[]).map(city=>({url:`${siteUrl}/reparacion-celulares-${city}`,lastModified:now,changeFrequency:"monthly" as const,priority:.9})),...(["la-rioja","san-juan"] as CityKey[]).flatMap(city=>services.map(s=>({url:`${siteUrl}/${city}/${s.slug}`,lastModified:now,changeFrequency:"monthly" as const,priority:.7})))];}
